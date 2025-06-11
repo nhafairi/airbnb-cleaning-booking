@@ -1,51 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Thanks for Booking!</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      text-align: center;
-      padding: 50px;
-    }
-    .container {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      max-width: 500px;
-      margin: auto;
-      box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
-    }
-    h2 {
-      color: #28a745;
-    }
-    p {
-      color: #333;
-    }
-    button {
-      background-color: #28a745;
-      color: white;
-      padding: 12px 24px;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-    button:hover {
-      background-color: #218838;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Confirmed</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <div class="container">
-    <h2>✅ Booking Confirmed!</h2>
-    <p>We’ve received your request. You’ll get a confirmation email shortly.</p>
-    <form action="/create-checkout-session" method="POST">
-      <button type="submit">💳 Pay Now ($80)</button>
-    </form>
+<body class="bg-green-50 text-gray-800 flex items-center justify-center min-h-screen">
+  <div class="bg-white shadow-lg rounded-lg p-8 max-w-md text-center">
+    <h1 class="text-2xl font-bold text-green-600 mb-4">🎉 Booking Confirmed!</h1>
+    <p class="mb-4">Thank you for scheduling your Airbnb cleaning with us. A confirmation has been sent to your email.</p>
+    <a href="/" class="inline-block mt-4 bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">
+      Book Another Cleaning
+    </a>
   </div>
 </body>
 </html>

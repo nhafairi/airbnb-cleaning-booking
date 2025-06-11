@@ -45,27 +45,28 @@ def book():
 
     # Send email confirmation
     message = Mail(
-        from_email='your_email@example.com',
+        from_email='nhafairi1@gmail.com',  # Must match your verified sender
         to_emails=data['email'],
         subject='Your Airbnb Cleaning is Booked!',
         html_content=f"<strong>Thanks {data['name']}! We'll see you at {data['address']} on {data['date']} at {data['time']}.</strong>"
-    )
+)
     try:
         sg = SendGridAPIClient(os.getenv('SENDGRID_API_KEY'))
-        sg.send(message)
+        response = sg.send(message)
+        print("✅ Email sent:", response.status_code)
     except Exception as e:
-        print("Email failed:", e)
+        print("❌ Email failed:", e)
 
-    # Send SMS confirmation (to a test number)
-    try:
-        client = Client(os.getenv('TWILIO_SID'), os.getenv('TWILIO_AUTH_TOKEN'))
-        client.messages.create(
-            body=f"✅ Booking confirmed for {data['date']} at {data['time']} — {data['address']}",
-            from_=os.getenv('TWILIO_PHONE'),
-            to='+1XXXXXXXXXX'  # Replace with actual number or dynamic input
-        )
-    except Exception as e:
-        print("SMS failed:", e)
+    # # Send SMS confirmation (to a test number)
+    # try:
+    #     client = Client(os.getenv('TWILIO_SID'), os.getenv('TWILIO_AUTH_TOKEN'))
+    #     client.messages.create(
+    #         body=f"✅ Booking confirmed for {data['date']} at {data['time']} — {data['address']}",
+    #         from_=os.getenv('TWILIO_PHONE'),
+    #         to='+1XXXXXXXXXX'  # Replace with actual number or dynamic input
+    #     )
+    # except Exception as e:
+    #     print("SMS failed:", e)
 
     return redirect('/thankyou')
 

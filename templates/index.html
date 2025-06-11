@@ -1,89 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Airbnb Cleaning Service - Book Now</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f8f9fa;
-      max-width: 600px;
-      margin: auto;
-      padding: 30px;
-    }
-    h2 {
-      text-align: center;
-      color: #343a40;
-    }
-    form {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
-    }
-    label {
-      font-weight: bold;
-    }
-    input, select, textarea, button {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0 20px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    button {
-      background-color: #007bff;
-      color: white;
-      border: none;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HafaClean – Airbnb Cleaning Services</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
 
-  <h2>Book Your Airbnb Cleaning</h2>
+<body class="bg-white text-gray-900">
+  <!-- Hero Section -->
+  <section class="bg-indigo-600 text-white py-20 text-center">
+    <div class="max-w-4xl mx-auto px-4">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Welcome to HafaClean</h1>
+      <p class="text-lg md:text-xl">Reliable Airbnb cleaning services across Philadelphia</p>
+      <a href="#book" class="mt-6 inline-block bg-white text-indigo-600 font-semibold py-3 px-6 rounded-full shadow hover:bg-gray-100 transition">Book a Cleaning</a>
+    </div>
+  </section>
 
-  <form action="/book" method="post">
-    <label for="name">Full Name</label>
-    <input type="text" id="name" name="name" required>
+  <!-- Pricing Section -->
+  <section class="bg-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold text-gray-900 mb-4">Choose Your Cleaning Package</h2>
+      <p class="text-gray-600 mb-12">Simple, transparent pricing for any Airbnb stay</p>
 
-    <label for="email">Email Address</label>
-    <input type="email" id="email" name="email" required>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Basic Package -->
+        <div class="bg-gray-50 border border-gray-200 p-6 rounded-2xl shadow-lg hover:shadow-xl transition duration-300">
+          <div class="mb-4 text-indigo-600 text-4xl">
+            🧼
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Standard Clean</h3>
+          <p class="text-gray-600 mb-4">Perfect for in-between guests</p>
+          <p class="text-3xl font-bold text-gray-800">$80</p>
+          <ul class="mt-6 text-sm text-gray-600 space-y-2">
+            <li>✅ Kitchen & bathroom sanitizing</li>
+            <li>✅ Vacuum & dusting</li>
+            <li>✅ Fresh linens (if provided)</li>
+          </ul>
+        </div>
 
-    <label for="address">Property Address</label>
-    <input type="text" id="address" name="address" required>
+        <!-- Deep Clean -->
+        <div class="bg-white border-2 border-indigo-500 p-6 rounded-2xl shadow-xl transform scale-105">
+          <div class="mb-4 text-indigo-600 text-4xl animate-bounce">
+            ✨
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Deep Clean</h3>
+          <p class="text-gray-600 mb-4">Best for monthly or seasonal refreshes</p>
+          <p class="text-3xl font-bold text-gray-800">$120</p>
+          <ul class="mt-6 text-sm text-gray-600 space-y-2">
+            <li>✅ Includes standard clean</li>
+            <li>✅ Inside appliances & cabinets</li>
+            <li>✅ Extra attention to high-touch areas</li>
+          </ul>
+        </div>
 
-    <label for="date">Preferred Date</label>
-    <input type="date" id="date" name="date" required>
+        <!-- Move-Out -->
+        <div class="bg-gray-50 border border-gray-200 p-6 rounded-2xl shadow-lg hover:shadow-xl transition duration-300">
+          <div class="mb-4 text-indigo-600 text-4xl">
+            🏠
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Move-Out Clean</h3>
+          <p class="text-gray-600 mb-4">Thorough reset between longer stays</p>
+          <p class="text-3xl font-bold text-gray-800">$400</p>
+          <ul class="mt-6 text-sm text-gray-600 space-y-2">
+            <li>✅ All Deep Clean services</li>
+            <li>✅ Trash removal</li>
+            <li>✅ Final polish + inspection ready</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <label for="time">Preferred Time</label>
-    <input type="time" id="time" name="time" required>
-
-    <label for="bedrooms"># of Bedrooms</label>
-    <select id="bedrooms" name="bedrooms">
-      <option>1</option>
-      <option>2</option>
-      <option>3+</option>
-    </select>
-
-    <label for="bathrooms"># of Bathrooms</label>
-    <select id="bathrooms" name="bathrooms">
-      <option>1</option>
-      <option>2</option>
-      <option>3+</option>
-    </select>
-
-    <label for="notes">Special Instructions</label>
-    <textarea id="notes" name="notes" placeholder="Anything we should know?"></textarea>
-
-    <button type="submit">📅 Book Now</button>
-  </form>
-
-  <form action="/create-checkout-session" method="POST" style="text-align:center; margin-top: 20px;">
-    <button type="submit" style="background:#28a745;">💳 Pay Now ($80)</button>
-  </form>
-
+  <!-- Booking Form (anchor for CTA) -->
+  <section id="book" class="bg-gray-100 py-16">
+    <div class="max-w-xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-center mb-6">Book Your Cleaning</h2>
+      <form action="/book" method="POST" class="space-y-4 bg-white p-6 rounded-xl shadow">
+        <input name="name" placeholder="Your Name" class="w-full border border-gray-300 rounded p-3" required>
+        <input name="email" type="email" placeholder="Your Email" class="w-full border border-gray-300 rounded p-3" required>
+        <input name="address" placeholder="Property Address" class="w-full border border-gray-300 rounded p-3" required>
+        <input name="date" type="date" class="w-full border border-gray-300 rounded p-3" required>
+        <input name="time" type="time" class="w-full border border-gray-300 rounded p-3" required>
+        <input name="bedrooms" type="number" placeholder="# of Bedrooms" class="w-full border border-gray-300 rounded p-3" required>
+        <input name="bathrooms" type="number" placeholder="# of Bathrooms" class="w-full border border-gray-300 rounded p-3" required>
+        <textarea name="notes" placeholder="Special notes" class="w-full border border-gray-300 rounded p-3"></textarea>
+        <button class="bg-indigo-600 text-white w-full py-3 rounded hover:bg-indigo-700 transition">Book Now</button>
+      </form>
+    </div>
+  </section>
 </body>
+
 </html>
