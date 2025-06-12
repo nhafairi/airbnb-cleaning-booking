@@ -1,95 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HafaClean – Airbnb Cleaning Services</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HafaClean – Book Your Cleaning</title>
 
-<body class="bg-white text-gray-900">
-  <!-- Hero Section -->
-  <section class="bg-indigo-600 text-white py-20 text-center">
-    <div class="max-w-4xl mx-auto px-4">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">Welcome to HafaClean</h1>
-      <p class="text-lg md:text-xl">Reliable Airbnb cleaning services across Philadelphia</p>
-      <a href="#book" class="mt-6 inline-block bg-white text-indigo-600 font-semibold py-3 px-6 rounded-full shadow hover:bg-gray-100 transition">Book a Cleaning</a>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Flatpickr Date Picker -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+  <!-- AOS Animation -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-white shadow p-6" data-aos="fade-down">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-blue-600">HafaClean</h1>
+      <a href="#pricing" class="text-blue-600 hover:underline">Pricing</a>
     </div>
+  </header>
+
+  <!-- Booking Form -->
+  <section class="max-w-3xl mx-auto p-6 bg-white mt-10 rounded-xl shadow-md" data-aos="fade-up">
+    <h2 class="text-xl font-semibold mb-4">📅 Book a Cleaning</h2>
+    <form action="/book" method="POST" class="space-y-4">
+
+      <input type="text" name="name" placeholder="Your Name" required class="w-full px-4 py-2 border rounded-lg" />
+      <input type="email" name="email" placeholder="Email Address" required class="w-full px-4 py-2 border rounded-lg" />
+      <input type="text" name="address" placeholder="Property Address" required class="w-full px-4 py-2 border rounded-lg" />
+
+      <!-- Date Picker -->
+      <input type="text" id="date" name="date" placeholder="Select a date" required class="w-full px-4 py-2 border rounded-lg" />
+
+      <!-- Time Input -->
+      <input type="time" name="time" required class="w-full px-4 py-2 border rounded-lg" />
+
+      <div class="grid grid-cols-2 gap-4">
+        <input type="number" name="bedrooms" placeholder="# of Bedrooms" required class="w-full px-4 py-2 border rounded-lg" />
+        <input type="number" name="bathrooms" placeholder="# of Bathrooms" required class="w-full px-4 py-2 border rounded-lg" />
+      </div>
+
+      <textarea name="notes" placeholder="Additional Notes (optional)" class="w-full px-4 py-2 border rounded-lg"></textarea>
+
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">Book Now</button>
+    </form>
   </section>
 
   <!-- Pricing Section -->
-  <section class="bg-white py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold text-gray-900 mb-4">Choose Your Cleaning Package</h2>
-      <p class="text-gray-600 mb-12">Simple, transparent pricing for any Airbnb stay</p>
+  <section id="pricing" class="max-w-6xl mx-auto mt-16 px-6" data-aos="fade-up" data-aos-delay="200">
+    <h2 class="text-2xl font-bold mb-6 text-center">💲 Pricing</h2>
+    <div class="grid md:grid-cols-3 gap-6">
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Basic Package -->
-        <div class="bg-gray-50 border border-gray-200 p-6 rounded-2xl shadow-lg hover:shadow-xl transition duration-300">
-          <div class="mb-4 text-indigo-600 text-4xl">
-            🧼
-          </div>
-          <h3 class="text-xl font-semibold mb-2">Standard Clean</h3>
-          <p class="text-gray-600 mb-4">Perfect for in-between guests</p>
-          <p class="text-3xl font-bold text-gray-800">$80</p>
-          <ul class="mt-6 text-sm text-gray-600 space-y-2">
-            <li>✅ Kitchen & bathroom sanitizing</li>
-            <li>✅ Vacuum & dusting</li>
-            <li>✅ Fresh linens (if provided)</li>
-          </ul>
-        </div>
-
-        <!-- Deep Clean -->
-        <div class="bg-white border-2 border-indigo-500 p-6 rounded-2xl shadow-xl transform scale-105">
-          <div class="mb-4 text-indigo-600 text-4xl animate-bounce">
-            ✨
-          </div>
-          <h3 class="text-xl font-semibold mb-2">Deep Clean</h3>
-          <p class="text-gray-600 mb-4">Best for monthly or seasonal refreshes</p>
-          <p class="text-3xl font-bold text-gray-800">$120</p>
-          <ul class="mt-6 text-sm text-gray-600 space-y-2">
-            <li>✅ Includes standard clean</li>
-            <li>✅ Inside appliances & cabinets</li>
-            <li>✅ Extra attention to high-touch areas</li>
-          </ul>
-        </div>
-
-        <!-- Move-Out -->
-        <div class="bg-gray-50 border border-gray-200 p-6 rounded-2xl shadow-lg hover:shadow-xl transition duration-300">
-          <div class="mb-4 text-indigo-600 text-4xl">
-            🏠
-          </div>
-          <h3 class="text-xl font-semibold mb-2">Move-Out Clean</h3>
-          <p class="text-gray-600 mb-4">Thorough reset between longer stays</p>
-          <p class="text-3xl font-bold text-gray-800">$400</p>
-          <ul class="mt-6 text-sm text-gray-600 space-y-2">
-            <li>✅ All Deep Clean services</li>
-            <li>✅ Trash removal</li>
-            <li>✅ Final polish + inspection ready</li>
-          </ul>
-        </div>
+      <div class="bg-white rounded-lg shadow p-6 text-center" data-aos="zoom-in">
+        <h3 class="text-lg font-bold">Studio / 1BR</h3>
+        <p class="text-2xl my-4">$80</p>
+        <ul class="text-sm mb-4">
+          <li>✔ Full cleaning</li>
+          <li>✔ Supplies included</li>
+          <li>✔ 2-hour service</li>
+        </ul>
       </div>
+
+      <div class="bg-white rounded-lg shadow p-6 text-center border-2 border-blue-500" data-aos="zoom-in" data-aos-delay="100">
+        <h3 class="text-lg font-bold text-blue-600">2–3 Bedrooms</h3>
+        <p class="text-2xl my-4">$120</p>
+        <ul class="text-sm mb-4">
+          <li>✔ Deep cleaning</li>
+          <li>✔ Flexible time slots</li>
+          <li>✔ Free touch-ups</li>
+        </ul>
+      </div>
+
+      <div class="bg-white rounded-lg shadow p-6 text-center" data-aos="zoom-in" data-aos-delay="200">
+        <h3 class="text-lg font-bold">Large Homes</h3>
+        <p class="text-2xl my-4">Custom</p>
+        <ul class="text-sm mb-4">
+          <li>✔ Custom quote</li>
+          <li>✔ Recurring cleanings</li>
+          <li>✔ Dedicated support</li>
+        </ul>
+      </div>
+
     </div>
   </section>
 
-  <!-- Booking Form (anchor for CTA) -->
-  <section id="book" class="bg-gray-100 py-16">
-    <div class="max-w-xl mx-auto px-4">
-      <h2 class="text-2xl font-bold text-center mb-6">Book Your Cleaning</h2>
-      <form action="/book" method="POST" class="space-y-4 bg-white p-6 rounded-xl shadow">
-        <input name="name" placeholder="Your Name" class="w-full border border-gray-300 rounded p-3" required>
-        <input name="email" type="email" placeholder="Your Email" class="w-full border border-gray-300 rounded p-3" required>
-        <input name="address" placeholder="Property Address" class="w-full border border-gray-300 rounded p-3" required>
-        <input name="date" type="date" class="w-full border border-gray-300 rounded p-3" required>
-        <input name="time" type="time" class="w-full border border-gray-300 rounded p-3" required>
-        <input name="bedrooms" type="number" placeholder="# of Bedrooms" class="w-full border border-gray-300 rounded p-3" required>
-        <input name="bathrooms" type="number" placeholder="# of Bathrooms" class="w-full border border-gray-300 rounded p-3" required>
-        <textarea name="notes" placeholder="Special notes" class="w-full border border-gray-300 rounded p-3"></textarea>
-        <button class="bg-indigo-600 text-white w-full py-3 rounded hover:bg-indigo-700 transition">Book Now</button>
-      </form>
-    </div>
-  </section>
+  <!-- Footer -->
+  <footer class="text-center text-sm py-6 text-gray-500 mt-10" data-aos="fade-in">
+    © 2025 HafaClean. All rights reserved.
+  </footer>
+
+  <!-- Flatpickr Script -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+    flatpickr("#date", {
+      minDate: "today",
+      dateFormat: "Y-m-d",
+      disable: ["2025-06-12", "2025-06-13"] // example dates booked/unavailable
+    });
+  </script>
+
+  <!-- AOS Animation Script -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+  </script>
+
 </body>
-
 </html>
