@@ -1,21 +1,41 @@
 from dotenv import load_dotenv
 load_dotenv()
-from flask import Flask, render_template, request, redirect
+
+from flask import Flask, render_template, request, redirect, abort
 import csv
 from datetime import datetime
 import os
 
-# Email
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
-
-# SMS
 from twilio.rest import Client
-
-# Stripe
 import stripe
 
-app = Flask(__name__)
+app = Flask(__name__)  # ✅ Define app FIRST
+
+# Now it's safe to use @app.route
+@app.route('/admin-login', methods=['GET'])
+def admin_login_page():
+    return render_template('admin_login.html')
+
+@app.route('/admin', methods=['POST'])
+def admin_login():
+    username = request.form.get('username')
+    password = request.form.get('password')
+
+    env_user = os.getenv('ADMIN_USER')
+    env_pass = os.getenv('ADMIN_PASS')
+
+    if username == env_user and password == env_pass:
+        return render_template('admin_dashboard.html')
+    else:
+        return abort(401)
+
+
+# Ensure the bookings CSV is always written relative to this file so
+# the app works no matter where it is executed from.
+BOOKINGS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                             "bookings.csv")
 
 stripe.api_key = os.getenv('STRIPE_SECRET_KEY')
 
@@ -37,7 +57,7 @@ def book():
         'timestamp': datetime.now().isoformat()
     }
 
-    with open('bookings.csv', 'a', newline='') as file:
+    with open(BOOKINGS_FILE, 'a', newline='') as file:
         writer = csv.DictWriter(file, fieldnames=data.keys())
         if file.tell() == 0:
             writer.writeheader()
@@ -73,6 +93,10 @@ def book():
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
     try:
+        base_url = os.getenv('BASE_URL') or request.url_root
+        if base_url.endswith('/'):
+            base_url = base_url[:-1]
+
         session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items=[{
@@ -86,8 +110,8 @@ def create_checkout_session():
                 'quantity': 1,
             }],
             mode='payment',
-            success_url='http://localhost:5000/thankyou',
-            cancel_url='http://localhost:5000/',
+            success_url=f"{base_url}/thankyou",
+            cancel_url=f"{base_url}/",
         )
         return redirect(session.url, code=303)
     except Exception as e:

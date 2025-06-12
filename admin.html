@@ -1,0 +1,48 @@
+<!-- admin.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HafaClean Admin Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+  <nav class="bg-white shadow p-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold">HafaClean Admin</h1>
+    <a href="admin-login.html" class="text-sm text-blue-600 hover:underline">Log Out</a>
+  </nav>
+
+  <main class="max-w-6xl mx-auto py-10 px-4 grid gap-8 md:grid-cols-2">
+    
+    <!-- Booking List -->
+    <section class="bg-white p-6 rounded-xl shadow">
+      <h2 class="text-xl font-semibold mb-4">Upcoming Cleanings</h2>
+      <ul class="space-y-3 text-sm text-gray-700">
+        <li>📍 <strong>June 12, 10am</strong> — 1201 Wharton St, 2BR, Sarah</li>
+        <li>📍 <strong>June 13, 2pm</strong> — 1500 Pine St, Studio, James</li>
+        <li>📍 <strong>June 14, 11am</strong> — 1818 Chestnut St, 1BR, Olivia</li>
+      </ul>
+    </section>
+
+    <!-- Payments -->
+    <section class="bg-white p-6 rounded-xl shadow">
+      <h2 class="text-xl font-semibold mb-4">Payment Status</h2>
+      <ul class="space-y-3 text-sm">
+        <li>✅ $95 – Sarah (1201 Wharton St)</li>
+        <li>❌ Unpaid – James (1500 Pine St)</li>
+        <li>✅ $105 – Olivia (1818 Chestnut St)</li>
+      </ul>
+    </section>
+
+    <!-- Calendar Placeholder -->
+    <section class="bg-white p-6 rounded-xl shadow md:col-span-2">
+      <h2 class="text-xl font-semibold mb-4">Calendar View</h2>
+      <div class="h-64 bg-gray-200 rounded flex items-center justify-center text-gray-600">
+        (📆 Calendar integration coming soon)
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
