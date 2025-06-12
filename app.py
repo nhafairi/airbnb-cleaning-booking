@@ -16,6 +16,10 @@ from twilio.rest import Client
 import stripe
 
 app = Flask(__name__)
+# Ensure the bookings CSV is always written relative to this file so
+# the app works no matter where it is executed from.
+BOOKINGS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                             "bookings.csv")
 
 stripe.api_key = os.getenv('STRIPE_SECRET_KEY')
 
@@ -37,7 +41,7 @@ def book():
         'timestamp': datetime.now().isoformat()
     }
 
-    with open('bookings.csv', 'a', newline='') as file:
+    with open(BOOKINGS_FILE, 'a', newline='') as file:
         writer = csv.DictWriter(file, fieldnames=data.keys())
         if file.tell() == 0:
             writer.writeheader()
