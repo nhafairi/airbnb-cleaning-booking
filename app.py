@@ -77,6 +77,10 @@ def book():
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
     try:
+        base_url = os.getenv('BASE_URL') or request.url_root
+        if base_url.endswith('/'):
+            base_url = base_url[:-1]
+
         session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items=[{
@@ -90,8 +94,8 @@ def create_checkout_session():
                 'quantity': 1,
             }],
             mode='payment',
-            success_url='http://localhost:5000/thankyou',
-            cancel_url='http://localhost:5000/',
+            success_url=f"{base_url}/thankyou",
+            cancel_url=f"{base_url}/",
         )
         return redirect(session.url, code=303)
     except Exception as e:
